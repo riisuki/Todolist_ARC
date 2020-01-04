@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>To-do List</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{% static 'todo/bs/css/flatly.min.css' %}"/>
+		<link rel="stylesheet" href="{% static 'todo/styles.css' %}" />
+
+	</head>
+	<body>
+
+		<div class="container" id="wrapper">
+			
+			<div class="row">
+				<div class="col" id="content">
+					<h1>To-do List<br>=========</h1>
+					
+					<form action="{% url 'add' %}" method="POST" role="form">
+						{% csrf_token %}
+						<div class="form-group-lg">{{form.text}}<br></div>
+						<div class="form-group">{{form.desc}}</div>
+						<div class="form-group">{{form.due}}</div>
+						<div class="form-group">
+							<br><button type="submit" class="btn btn-danger btn-block" id="add-btn"><i class="glyphicon glyphicon-plus"></i><big> Add Task to List</big></button>
+						</div>
+					</form>
+
+					<div class="row t10">
+						<div class="col-lg-12">
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<a href="{% url 'deletecomplete' %}"><button type="button" class="btn btn-warning">
+										<i class="glyphicon glyphicon-trash"></i> DELETE COMPLETED TASKS
+									</button></a>
+								</div>
+								<div class="btn-group">
+									<a href="{% url 'deleteall' %}"><button type="button" class="btn btn-warning">
+										<i class="glyphicon glyphicon-trash"></i> DELETE ALL TASKS
+									</button></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<ul class="list-group t20">
+						{% for todo in todo_list %}
+							{% if todo.complete %}
+							<li class="list-group-item todo-completed"><a class="link2" href="{% url 'complete' todo.id %}"><i class="glyphicon glyphicon-check"></i></a><font size=5em><b> {{todo.text}} </b></font><a href="{% url 'deleteitem' todo.id %}"><button type="button" class="btn btn-danger btn-del btn-sm"><i class="glyphicon glyphicon-trash"></i></button></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size=4em>{{todo.desc}}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due: {{todo.due}}</li>
+							{% else %}
+							<li class="list-group-item"><a class="link1" href="{% url 'complete' todo.id %}"><i class="glyphicon glyphicon-unchecked"></i></a><font size=5em><b> {{todo.text}} </b></font><a href="{% url 'deleteitem' todo.id %}"><button type="button" class="btn btn-danger btn-del btn-sm"><i class="glyphicon glyphicon-trash"></i></button></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size=4em>{{todo.desc}}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due: {{todo.due}}</li>
+							{% endif %}
+							
+						{% endfor %}
+					</ul>
+
+				</div>
+			</div>
+
+			<footer>
+				<div class="row pad">
+					<div class="col-lg-12 text-center">
+						Tugas Day 3 ARC
+						<br>~~~
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>
