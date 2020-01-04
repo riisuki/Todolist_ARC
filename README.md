@@ -8,6 +8,7 @@ TUGAS ARC DAY 3 : TO-DO LIST BERBASIS WEB
 * Click on "Delete Completed Tasks" button to delete all tasks marked as "Complete".
 * CLick on "Delete All Tasks" button to delete all tasks.
 * Editing can only be done with admin login.
+* The list is ordered by due date.
 
 [Referensi](https://github.com/PrettyPrinted/django_todo_app)
 
