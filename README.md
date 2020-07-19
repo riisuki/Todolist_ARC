@@ -6,7 +6,7 @@ TUGAS ARC DAY 3 : TO-DO LIST BERBASIS WEB
 * Click on the **checkbox** beside the task to mark it as completed/not completed.
 * Click on the **trash icon** beside the task title to delete task.
 * Click on "Delete Completed Tasks" button to delete all tasks marked as "Complete".
-* CLick on "Delete All Tasks" button to delete all tasks.
+* Click on "Delete All Tasks" button to delete all tasks.
 * Editing can only be done with admin login.
 * The list is ordered by due date.
 
